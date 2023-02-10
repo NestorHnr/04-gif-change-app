@@ -1,29 +1,38 @@
 import { useState } from 'react';
+import { AddCategory } from './components/AddCategory';
+import { GifGrid } from './components/GifGrid';
 
 export const GitChangeApp = () => {
     
     const [categories, setCategories] = useState([ 'One Punch','Dragon ball']); 
     
-    const onAddCategory = () =>{
+    const onAddCategory = ( newCategory ) =>{
 
-        setCategories(['valorant',...categories]);
+        if(categories.includes(newCategory)) return;
+        
+        setCategories([ newCategory,...categories ]);
+        // setCategories(['valorant',...categories]);
     }
 
     return (
         <>
-            {/* titulo */}
+            
             <h1>GitChangeApp</h1>
             
-            {/* input */}
+            <AddCategory 
+                onNewCategory = {event => onAddCategory(event)}
+            />
 
-            {/* Listado de Gif */}
-            <button onClick={onAddCategory}>agregar</button>
-            <ol>
-                {categories.map( category => {
-                    return <li key = { category }>{ category }</li>
-                })}
-            </ol>
-                {/* Gif item */}
+            
+            {
+            categories.map( (category) => (
+                <GifGrid 
+                    key={ category } 
+                    category={ category }
+                    />
+                ))
+            }
+            
         </>
     )
 }
