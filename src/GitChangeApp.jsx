@@ -1,17 +1,17 @@
 import { useState } from 'react';
-import { AddCategory } from './components/AddCategory';
-import { GifGrid } from './components/GifGrid';
+import { AddCategory, GifGrid } from './components';
+
 
 export const GitChangeApp = () => {
     
-    const [categories, setCategories] = useState([ 'One Punch','Dragon ball']); 
+    const [categories, setCategories] = useState([ 'Kirito']); 
     
     const onAddCategory = ( newCategory ) =>{
 
         if(categories.includes(newCategory)) return;
         
         setCategories([ newCategory,...categories ]);
-        // setCategories(['valorant',...categories]);
+
     }
 
     return (
